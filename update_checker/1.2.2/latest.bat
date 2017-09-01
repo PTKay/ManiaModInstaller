@@ -42,9 +42,10 @@ echo.
 echo Press any key to finish uninstallation
 pause >nul
 
-RD /S /Q "ManiaModInstaller"
 RD /S /Q "_rsdkbackup"
 
 start ManiaModManager.exe
+
+RD /S /Q "ManiaModInstaller"
 
 :proceed

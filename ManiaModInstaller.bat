@@ -1,26 +1,84 @@
 @echo off
-::Checks if Data.rsdk and RsdkPack.exe exists
+cls
+::Checks if Data.rsdk exists
 if not exist "Data.rsdk" (
-echo Data.rsdk does not exist!
-echo Make sure you put all the files from ManiaModInstaller into your "Sonic Mania" Folder
-echo Press any key to close this window
+echo ERROR: Could not detect Data.rsdk!
+echo -----------------------------------
+echo Please copy ManiaModInstaller to the
+echo Sonic Mania folder, where SonicMania.exe
+echo is located.
 pause >nul
 goto exit
 )
+::Runs Update File List.bat if Data.txt doesn't exist
+::if not exist "Data.txt" (call "ManiaModInstaller\UpdateFileList.bat")
 
-if not exist "RsdkPack.exe" (
-echo RsdkPack.exe does not exist!
-echo This is required to extract and edit the archive
-echo Press any key to close this window
-pause >nul
-goto exit
-)
+::Runs UpdateFileList.bat everytime the program launches
+del /q data.txt
+call "ManiaModInstaller\UpdateFileList.bat"
 
-::Updates the file list
-call UpdateFileList.bat
+::updates MMI
+call "ManiaModInstaller\MMIUpdater.bat"
 
 
+md _rsdkbackup
+cls
+echo Backing up Data.rsdk...
+if not exist "_rsdkbackup\data.rsdk" (copy data.rsdk _rsdkbackup)
+
+
+:menu
+cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
+echo 		Main Menu
+echo ------------------------------------------
+echo Please select an option:
+echo.
+echo 1 - Install mods
+echo 2 - Uninstall mods
+echo 3 - Run Sonic Mania
+echo 4 - Exit Mania Mod Installer
+echo ------------------------------------------
+set /p menu=
+if /I "%menu%" EQU "1" goto :install
+if /I "%menu%" EQU "2" goto :uninstall
+if /I "%menu%" EQU "3" goto :run_game
+if /I "%menu%" EQU "4" goto :exit 
+goto :menu_error
+
+:menu_error
+cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
+echo 		Main Menu
+echo ------------------------------------------
+echo Please select an option:
+echo.
+echo 1 - Install mods
+echo 2 - Uninstall mods
+echo 3 - Run Sonic Mania
+echo 4 - Exit Mania Mod Installer
+echo ------------------------------------------
+echo Invalid option!
+set /p menu=
+if /I "%menu%" EQU "1" goto :install
+if /I "%menu%" EQU "2" goto :uninstall
+if /I "%menu%" EQU "3" goto :run_game
+if /I "%menu%" EQU "4" goto :exit 
+goto :menu_error
+
+:install
 ::Extracts Data.rsdk
+md Data
+attrib +h Data /s /d
+del /q data.xml
+cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
 echo Extracting game content. This may take a while...
 echo Do not close this window until extraction finishes.
 RsdkPack.exe Data.rsdk >nul
@@ -30,20 +88,30 @@ cls
 ::Mod Instalation part
 cd Mods
 cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
+echo Currently available mods:
+echo.
 dir /ad /b
+echo.
 set /p mod1=Select one mod to install (type it's name)
 set /p mod2=Select a second mod to install (if none, leave this blank)
 set /p mod3=Select a third mod to install (if none, leave this blank)
 cls
 md mod
-xcopy /s /y %mod1% mod
-xcopy /s /y %mod2% mod
-xcopy /s /y %mod3% mod
+xcopy /s /y /h %mod1% mod
+xcopy /s /y /h %mod2% mod
+xcopy /s /y /h %mod3% mod
 cd ..
-xcopy /s /y "Mods\mod" Data
+xcopy /s /y /h "Mods\mod" Data
 rd /s /q "mods\mod"
 
 ::Repacks the Data.rsdk file
+cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
 echo Installing mods and repacking game content. This may take a while...
 echo Do not close this window until installation finishes.
 RsdkPack.exe Data >nul
@@ -54,16 +122,58 @@ cls
 ::RD /s Data
 
 ::Disabling this parameter disables deletion of the Data folder
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
 echo Deleting leftovers...
 RD /S /Q Data
 RD /S /Q "Mods/Data"
-pause
 
+echo Mod(s) installed!
 cls
-echo Mod(s) installed! Open the game to see if it worked.
-echo -----------------------------------------------------
-echo If you want, you can go back to your original installation
-echo by running "UninstallMods.bat" from your game folder!
-echo Press any key to close this window
-pause >nul
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
+echo Mod(s) installed!
+echo.
+echo Open Sonic Mania?
+set /p opengame=(Y/N)
+if /I "%opengame%" EQU "Y" goto :run_game
+if /I "%opengame%" EQU "N" goto :menu
+
+
+:run_game
+start steam://rungameid/584400
+goto :exit
+
+:uninstall
+cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
+echo This will uninstall any mods you currently have installed.
+echo Are you sure you want to do this?
+set /p uninstall=(Y/N)
+if /I "%uninstall%" EQU "Y" goto :uninstall_true
+if /I "%uninstall%" EQU "N" goto :menu
+
+:uninstall_true
+cls
+echo Restoring Data.rsdk from Backup folder...
+xcopy /s /y _rsdkbackup .\
+
+echo Mod(s) uninstalled!
+cls
+echo Sonic Mania Mod Installer v1.2
+echo By PTKickass (with help from SuperSonic16)
+echo ------------------------------------------
+echo Mod(s) uninstalled!
+echo.
+echo Open Sonic Mania?
+set /p opengame=(Y/N)
+if /I "%opengame%" EQU "Y" goto :run_game
+if /I "%opengame%" EQU "N" goto :menu
+
+
+
 :exit

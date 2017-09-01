@@ -1,3 +1,11 @@
+1.2
+- Added an auto updater (Thanks SuperSonic16!)
+- Made it even more user friendly, with a better GUI (?)
+- No more separate bats, everything is under the same bat file.
+- Automatically checks for backups. If none is found, it makes one automatically.
+- Bug Fixes.
+
+
 1.0.3
 - Changed the format from EXE to BAT to eliminate problems with Antivirus software. It should now be
 usable by everyone.

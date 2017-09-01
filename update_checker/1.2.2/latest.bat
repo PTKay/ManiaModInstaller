@@ -43,5 +43,5 @@ echo Press any key to finish uninstallation
 pause >null
 
 RD /S /Q ManiaModInstaller
-
+RD /S /Q _rsdkbackup
 :proceed

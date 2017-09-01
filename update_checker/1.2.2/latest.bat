@@ -45,6 +45,6 @@ pause >nul
 RD /S /Q "ManiaModInstaller"
 RD /S /Q "_rsdkbackup"
 
-start ManiaModManager
+start ManiaModManager.exe
 
 :proceed

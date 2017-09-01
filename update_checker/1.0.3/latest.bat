@@ -11,7 +11,7 @@ if /I "%downloadupdate%" EQU "N" goto :proceed
 cls
 echo Updating ManiaModInstaller...
 echo Don't close this window!
-powershell "($WebClient = New-Object System.Net.WebClient).DownloadFile('https://github.com/PTKickass/ManiaModInstaller/blob/master/update_checker/1.0.3/ManiaModInstaller.7z', 'ManiaModInstaller\update.7z')"
+powershell "($WebClient = New-Object System.Net.WebClient).DownloadFile('https://github.com/PTKickass/ManiaModInstaller/blob/master/update_checker/1.0.3/ManiaModInstaller.7z?raw=true', 'ManiaModInstaller\update.7z')"
 
 maniamodinstaller\7z.exe x "maniamodinstaller\update.7z" -o"maniamodinstaller\update"
 

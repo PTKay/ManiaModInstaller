@@ -13,8 +13,16 @@ echo Downloading Mania Mod Loader by MainMemory
 echo Don't close this window!
 powershell "($WebClient = New-Object System.Net.WebClient).DownloadFile('http://mm.reimuhakurei.net/misc/ManiaModLoader.7z', 'maniamodinstaller/update.7z')"
 
-maniamodinstaller\7z.exe x "maniamodinstaller\update.7z" -o"maniamodinstaller\update"
+cls
+echo Updating Pre-packaged mods to be compatible
+echo with Mania Mod Loader...
+echo Don't close this window!
+powershell "($WebClient = New-Object System.Net.WebClient).DownloadFile('https://github.com/PTKickass/ManiaModInstaller/blob/master/update_checker/1.2.2/modsupdated.7z?raw=true', 'maniamodinstaller/mods.7z')"
 
+
+maniamodinstaller\7z.exe x "maniamodinstaller\update.7z" -o"maniamodinstaller\update"
+cls
+maniamodinstaller\7z.exe x "maniamodinstaller\mods.7z" -o"maniamodinstaller\update"
 
 cls
 echo Installing Mania Mod Loader...

@@ -4,9 +4,6 @@ echo The latest version is 1.0.3
 
 echo -------------------------------
 
-echo You have the latest version installed
-
+echo You already have the latest version installed!
+echo Press any key to proceed
 pause >nul
-
-set label=updater_finished
-call maniaModInstaller.bat %label%

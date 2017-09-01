@@ -1,3 +1,4 @@
+cls
 echo Your current version is 1.0.3
 
 echo The latest version is 1.0.3

@@ -43,8 +43,8 @@ echo 		Main Menu
 echo ------------------------------------------
 echo Please select an option:
 echo.
-echo 1 - Install mods
-echo 2 - Uninstall mods
+echo 1 - Install Mods
+echo 2 - Uninstall Mods
 echo 3 - Run Sonic Mania
 echo 4 - Exit Mania Mod Installer
 echo ------------------------------------------
@@ -64,8 +64,8 @@ echo 		Main Menu
 echo ------------------------------------------
 echo Please select an option:
 echo.
-echo 1 - Install mods
-echo 2 - Uninstall mods
+echo 1 - Install Mods
+echo 2 - Uninstall Mods
 echo 3 - Run Sonic Mania
 echo 4 - Exit Mania Mod Installer
 echo ------------------------------------------

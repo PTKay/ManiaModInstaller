@@ -1,5 +1,5 @@
 cls
-echo There now is an proper Mod Loader available made my MainMemory.
+echo There now is an proper Mod Loader available made by MainMemory.
 echo.
 echo Would you like to download it?
 echo (This will also uninstall ManiaModInstaller and restore your Data.rsdk file)

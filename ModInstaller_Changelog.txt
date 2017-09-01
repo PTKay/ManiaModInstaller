@@ -1,0 +1,20 @@
+1.0.3
+- Changed the format from EXE to BAT to eliminate problems with Antivirus software. It should now be
+usable by everyone.
+- Update filenames (data.txt)
+- Included a "UninstallMods.bat" that automatically replaces Data.rsdk with the one
+from the backup folder.
+- Updated the Installer fininshing dialog to mention "UninstallMods.bat"
+- Added colors to BackupRSDK.bat
+- Muted several dialogs and prints to simplify the tool
+- Changed backup folder name.
+- There will no longe be a data folder remaining in your Mods folder after you install mods.
+
+NOTE: If you backed up your RSDK file before, please move your backup into the new folder.
+How to do it:
+1 - Create a folder called "_rsdkbackup"
+2 - Move "data.rsdk" from the backup folder to the newly create folder.
+
+
+1.0
+- Initial Release

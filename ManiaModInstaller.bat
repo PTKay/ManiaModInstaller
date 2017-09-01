@@ -1,12 +1,23 @@
 @echo off
-::Checks if Data.rsdk exists
+::Checks if Data.rsdk and RsdkPack.exe exists
 if not exist "Data.rsdk" (
 echo Data.rsdk does not exist!
+echo Make sure you put all the files from ManiaModInstaller into your "Sonic Mania" Folder
+echo Press any key to close this window
 pause >nul
 goto exit
 )
-::Runs Update File List.bat if Data.txt doesn't exist
-if not exist "Data.txt" (call UpdateFileList.bat)
+
+if not exist "RsdkPack.exe" (
+echo RsdkPack.exe does not exist!
+echo This is required to extract and edit the archive
+echo Press any key to close this window
+pause >nul
+goto exit
+)
+
+::Updates the file list
+call UpdateFileList.bat
 
 
 ::Extracts Data.rsdk
@@ -34,7 +45,7 @@ rd /s /q "mods\mod"
 
 ::Repacks the Data.rsdk file
 echo Installing mods and repacking game content. This may take a while...
-echo Do not close this window until instalation finishes.
+echo Do not close this window until installation finishes.
 RsdkPack.exe Data >nul
 cls
 
@@ -48,11 +59,10 @@ RD /S /Q Data
 RD /S /Q "Mods/Data"
 pause
 
-echo Mod(s) installed! Open the game to see if it worked.
 cls
 echo Mod(s) installed! Open the game to see if it worked.
 echo -----------------------------------------------------
-echo If you want, you can go back to your original instalation
+echo If you want, you can go back to your original installation
 echo by running "UninstallMods.bat" from your game folder!
 echo Press any key to close this window
 pause >nul

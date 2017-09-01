@@ -28,7 +28,7 @@ xcopy /s /y _rsdkbackup .\
 
 cls
 echo Uninstalling ManiaModInstaller
-del /q "ModInstaller.bat"
+del /q "ManiaModInstaller.bat"
 del /q "ModInstaller_Changelog.txt"
 del /q "ModInstaller_Readme.txt"
 del /q "RSDKPack.exe"

@@ -1,3 +1,4 @@
+:begin
 cls
 echo There now is an proper Mod Loader available made by MainMemory.
 echo.
@@ -6,7 +7,7 @@ echo (This will also uninstall ManiaModInstaller and restore your Data.rsdk file
 set /p downloadupdate=(Y/N)
 if /I "%downloadupdate%" EQU "Y" goto :update
 if /I "%downloadupdate%" EQU "N" goto :proceed
-
+goto :begin
 :update
 cls
 echo Downloading Mania Mod Loader by MainMemory

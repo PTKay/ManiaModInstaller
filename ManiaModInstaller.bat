@@ -1,16 +1,28 @@
 @echo off
 cls
-::Checks if Data.rsdk exists
+::Checks if Data.rsdk and RSDKPack.exe exist
 if not exist "Data.rsdk" (
 echo ERROR: Could not detect Data.rsdk!
 echo -----------------------------------
 echo Please copy ManiaModInstaller to the
 echo Sonic Mania folder, where SonicMania.exe
 echo is located.
+echo.
+echo Press any key to close this window
 pause >nul
 goto exit
 )
 
+if not exist "RsdkPack.exe" (
+echo ERROR: Could not detect RSDKPack.exe!
+echo -----------------------------------
+echo This script requires RSDKPack to be able
+echo to extract and repack Data.rsdk!
+echo.
+echo Press any key to close this window
+pause >nul
+goto exit
+)
 
 :Gets rid of previous instalation files
 if exist BackupRSDK.bat (delete /q BackupRSDK.bat)
@@ -80,7 +92,7 @@ goto :menu_error
 :install
 ::Extracts Data.rsdk
 md Data
-attrib +h Data /s /d
+attrib +h Data
 del /q data.xml
 cls
 echo Sonic Mania Mod Installer v1.2
@@ -93,6 +105,7 @@ cls
 
 
 ::Mod Instalation part
+:mods
 cd Mods
 cls
 echo Sonic Mania Mod Installer v1.2
@@ -102,14 +115,32 @@ echo Currently available mods:
 echo.
 dir /ad /b
 echo.
-set /p mod1=Select one mod to install (type it's name)
-set /p mod2=Select a second mod to install (if none, leave this blank)
-set /p mod3=Select a third mod to install (if none, leave this blank)
+echo Type "refresh" to refresh the mod list
+echo Type "cancel" or "menu" to go back to the main menu
+echo ------------------------------------------
+set /p mod1=Select one mod to install (type it's name), or type refresh:
+
+if /I "%mod1%" EQU "refresh" goto :mods
+if /I "%mod1%" EQU "cancel" goto :menu
+if /I "%mod1%" EQU "menu" goto :menu
+
+set /p mod2=Select a second mod to install (if none, leave this blank), or type refresh:
+
+if /I "%mod2%" EQU "refresh" goto :mods
+if /I "%mod2%" EQU "cancel" goto :menu
+if /I "%mod2%" EQU "menu" goto :menu
+
+set /p mod3=Select a third mod to install (if none, leave this blank), or type refresh:
+
+if /I "%mod3%" EQU "refresh" goto :mods
+if /I "%mod3%" EQU "cancel" goto :menu
+if /I "%mod3%" EQU "menu" goto :menu
+
 cls
 md mod
-xcopy /s /y /h %mod1% mod
-xcopy /s /y /h %mod2% mod
-xcopy /s /y /h %mod3% mod
+xcopy /s /y /h "%mod1%" mod
+xcopy /s /y /h "%mod2%" mod
+xcopy /s /y /h "%mod3%" mod
 cd ..
 xcopy /s /y /h "Mods\mod" Data
 rd /s /q "mods\mod"

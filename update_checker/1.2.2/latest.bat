@@ -40,7 +40,7 @@ echo Thanks for using ManiaModInstaller!
 echo Mania Mod Loader will now open...
 echo.
 echo Press any key to finish uninstallation
-pause >null
+pause >nul
 
 RD /S /Q "ManiaModInstaller"
 RD /S /Q "_rsdkbackup"

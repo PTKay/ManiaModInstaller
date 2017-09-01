@@ -10,6 +10,13 @@ echo is located.
 pause >nul
 goto exit
 )
+
+
+:Gets rid of previous instalation files
+if exist BackupRSDK.bat (delete /q BackupRSDK.bat)
+if exist UninstallMods.bat (delete /q uninstallmods.bat)
+if exist updatefilelist.bat (delete /q updatefilelist.bat)
+
 ::Runs Update File List.bat if Data.txt doesn't exist
 ::if not exist "Data.txt" (call "ManiaModInstaller\UpdateFileList.bat")
 

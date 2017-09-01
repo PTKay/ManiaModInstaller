@@ -1,3 +1,5 @@
+## Sonic Mania Mod Installer (ManiaModInstaller)
+
 ManiaModInstaller simplifies the process of installing Sonic Mania mods by doing the extraction and repacking
 of Data.rsdk for you.
 

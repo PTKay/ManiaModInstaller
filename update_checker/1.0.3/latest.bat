@@ -17,3 +17,4 @@ maniamodinstaller\7z.exe x "maniamodinstaller\update.7z" -o"maniamodinstaller\up
 
 call maniamodinstaller\autoupdater.bat
 
+:proceed

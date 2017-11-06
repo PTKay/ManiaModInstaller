@@ -1,6 +1,6 @@
 :begin
 cls
-echo There now is an proper Mod Loader available made by MainMemory.
+echo There now is an proper Mod Loader available made by MainMemory (Edited by thesupersonic16).
 echo.
 echo Would you like to download it?
 echo (This will also uninstall ManiaModInstaller and restore your Data.rsdk file)
@@ -12,7 +12,7 @@ goto :begin
 cls
 echo Downloading Mania Mod Loader by MainMemory
 echo Don't close this window!
-powershell "($WebClient = New-Object System.Net.WebClient).DownloadFile('http://mm.reimuhakurei.net/misc/ManiaModLoader.7z', 'maniamodinstaller/update.7z')"
+powershell "($WebClient = New-Object System.Net.WebClient).DownloadFile('https://github.com/thesupersonic16/mania-mod-loader/releases/download/1.03.0919-9/ManiaModLoader.zip', 'maniamodinstaller/update.7z')"
 
 cls
 echo Updating Pre-packaged mods to be compatible
